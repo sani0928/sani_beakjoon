@@ -3,9 +3,9 @@ import sys
 
 t = int(input())
 
-for x in range(t):
+for hanroro in range(t):
     a, b = map(int,sys.stdin.readline().split())
-    print(f'Case #{x + 1}: {a + b}')
+    print(f'Case #{hanroro + 1}: {a + b}')
 
 
 # t = int(input())

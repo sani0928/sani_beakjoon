@@ -1,9 +1,14 @@
 t = int(input())
-lst = []
+
 for i in range(t):
-    r = int(input())
-    s = input()
-    lst.append(i)
-    for _ in lst:
-        lst * 3
-        print(lst)
+    r, s = input().split()
+    r = int(r)
+    a = [x * r for x in s]
+    result=''
+    s_length = len([x for x in s])
+    for j in range(s_length):
+        result += a[j]
+
+    print(result)
+
+        

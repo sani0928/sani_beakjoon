@@ -86,8 +86,28 @@
 # elif (a>0 and b<0):
 #     print(4)
 
-while a:
-    a = int(input())
-    a += a
-    if a >= 100:
-        break
+# while a:
+#     a = int(input())
+#     a += a
+#     if a >= 100:
+#         break
+
+
+class Animal:
+    num_of_animal = 0
+    
+    def __init__(self):
+        Animal.num_of_animal += 1
+
+class Cat(Animal):
+
+    def __init__(self,sound):
+        super().__init__()
+        self.sound=sound
+
+    def meow(self, sound):
+        print(sound)
+
+cat1 = Cat("야옹")
+cat1.meow("야옹")
+print(Animal.num_of_animal)

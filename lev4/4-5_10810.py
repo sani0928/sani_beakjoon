@@ -12,9 +12,41 @@ i j k
 # 최종적으로 1 2 1 1 0 (5번째 바구니는 0)
 
 n, m = map(int,input().split())
-lst = list(range(1, m + 1))
+lst = [0] * n
 
-for i in lst:
+# range(m)는 반복횟수를 지정하는데 의미 있음으로 시작 인덱스가 0이든 777이든 상관 없음
+# 만약 m=4라면 range(m)는 0,1,2,3지만 총 인자가 4개라는 것만 중요 
+for _ in range(m):
+    i, j, k = map(int,input().split())
+    for x in range(i-1, j):
+        lst[x] = k
+
+print(*lst)
+
+
+# if x > m:
+#     pass 
 
 
 # m만큼 인풋값을 추가 입력하고 그 값을 가지고 반복문 작성
+
+'''
+list는 0부터 시작
+a=3, b=5 일 때,
+range(a,b)라면 실제론 4번째 바구니부터 5번째바구니까지 지정한거임
+의도대로 하고 싶으면 range(a-1,b). 그럼 3번째~5번째 지정
+
+range(i-1,j-1)라면..
+0 0 0 0 0 #start
+0 0 0 0 0
+0 0 0 0 0
+1 1 1 0 0
+0 0 0 0 0 #end
+
+range(i-1,j)라면..
+0 0 0 0 0 #start
+3 3 0 0 0
+3 3 4 4 0
+1 1 1 1 0
+1 2 1 1 0
+'''

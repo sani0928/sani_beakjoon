@@ -1,44 +1,13 @@
 import sys; sys.stdin = open('1236_input.txt')
 
-
-def defending(arr,n,m):
-    count = 0; i=0; c=0
-    while i < n:
-
-        
-                 
-
-    return count
-
-
+# 1. 행에 x가 하나도 없으면
+# 2. 열에 x가 하나도 없으면
+# 3. 행에 x가 있지만 열에 x가 하나도 없다면
+# 4. 열에 x가 있지만 행에 x가 하나도 없다면
 
 n,m = map(int, input().split())
-arr = [input() for _ in range(n)]
-result = defending(arr,n,m)
-print(result)
+matrix = [list(input().strip()) for _ in range(n)]
 
+cnt = 0
 
-# arr= [0,0,0,0]
-# if 1 in arr[0:4]:
-#     print('there')
-# else:
-#     print('nope')
-
-
-
-
-
-
-
-
-# count=0
-# for r in range(n):
-#     for c in range(m):
-#         if arr[r][c] == 'X':
-#             break
-
-#     count+=1
-
-# print(count)
-
-
+for r in range(n):

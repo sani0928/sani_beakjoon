@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4240fc1-c6d5-4c28-8755-02320663bb2c" name="변경" comment="" />
+    <list default="true" id="c4240fc1-c6d5-4c28-8755-02320663bb2c" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/2798_input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/2798_input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2798_블랙잭.py" beforeDir="false" afterPath="$PROJECT_DIR$/2798_블랙잭.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,9 +16,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2t6xHjcYSPYrvz5B9oGcxrwl6F6" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -20,6 +26,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.1236_성키지키.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master에서 체리픽 중"

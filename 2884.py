@@ -2,15 +2,14 @@
 
 a, b = (map(int,input().split()))
 
-if (a > 0 and b > 45) or (a == 0 and b > 45 ):
-    b = b - 45
+if (a > 0 and b >= 45) or (a == 0 and b >= 45):
+    b += - 45
 elif (a > 0 and b < 45):
-    a = a - 1
-    b = b - 45
-elif (a == 0 and b <45 ):
+    a -= 1
+    b += + 15
+elif (a == 0 and b < 45):
     a = 23
-    b = b -45
-
+    b += + 15
 
 print (a, b)
 
@@ -22,3 +21,5 @@ print (a, b)
 # a = 10
 # a = abs(a -15)
 # print(a)
+
+# b < 45 일 때 60부터 뒤로.. 

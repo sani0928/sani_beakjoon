@@ -12,7 +12,7 @@ a = [x % 42 for x in t]
 
 # 뽑아낸 a 리스트에서 서로 다른 나머지가 몇 개 있는지 출력
 
-print(len(set(value_list)))
+print(len(set(a)))
 
 # set()를 통해 중복 인자 제거
 # 중복 제거 후 남은 리스트 요소 갯수를 len으로 구함

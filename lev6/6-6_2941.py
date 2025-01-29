@@ -1,20 +1,25 @@
-'c=', 'c-', 'dz=', 'd-', 'lj', 'nj', 's=', 'z='
+import sys; sys.stdin = open('2941input.txt')
 
-# =이 있으면 전 알파벳과 함께 .pop()
+cro = ['c=', 'c-', 'dz=', 'd-', 'lj', 'nj', 's=', 'z=']
 
+alpha = input()
 
-alpha = 'ddz=z='
-a = [x for x in alpha]
-print(a)
 counts = 0
-for i in a:
-    if i == '=':
-        a.pop([i]) and a.pop([i-1])
-    elif i == '=' and i-1 == 'z' and i-2 == 'd':
-        a.pop([i]) and a.pop([i-1] and a.pop([i-2]))        
-    if i in '-':
-        a.pop([i]) and a.pop([i-1])
+i = 0
+while i < len(alpha):
+    if alpha[i:i+3] in cro:
+        counts += 1
+        i += 3
 
-print(a)
+    elif alpha[i:i+2] in cro:
+        counts += 1
+        i += 2
 
-# '-'와 '='가 있으면 counting x
+    else:
+        counts += 1
+        i += 1
+
+print(counts)
+
+# while문은 인덱스(i)의 증가 속도와 증가 조건을 유연하게 설정할 수 있기 때문에
+# 경우에 따라 for문보다 더욱 유용하다.

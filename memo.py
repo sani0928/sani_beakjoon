@@ -85,3 +85,9 @@
 #     print(3)
 # elif (a>0 and b<0):
 #     print(4)
+
+while a:
+    a = int(input())
+    a += a
+    if a >= 100:
+        break

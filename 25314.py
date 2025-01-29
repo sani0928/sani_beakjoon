@@ -2,9 +2,8 @@
 
 
 a = (int(input()) // 4)
+print("long " * a + "int")
 
-for i in range(1 ,a + 1):
-    print(f'{max(i)}번')
     
 
 

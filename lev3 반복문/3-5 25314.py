@@ -7,5 +7,7 @@ print("long " * a + "int")
     
 
 
-# b = 20 // 4
-# print(b)
+'''
+b = 20 // 4
+print(b)
+'''

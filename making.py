@@ -1,6 +1,7 @@
 import os
 import sys
 
+
 def create_project(name):
     os.makedirs(name, exist_ok=True)
 

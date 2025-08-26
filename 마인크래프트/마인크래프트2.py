@@ -41,4 +41,5 @@ for k in total_block_h:
            ans = k
            min_time = total_time
 
+
 print(min_time, ans)

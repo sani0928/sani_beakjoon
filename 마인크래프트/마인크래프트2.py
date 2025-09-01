@@ -35,11 +35,10 @@ for k in total_block_h:
     print(f'현재 기준 블록 높이: {k}, 시간: {total_time}')
     # 인벤토리 확인
     print(f'현재 기준 블록 높이: {k}, 최종 인벤토리: {inventory}')
-    if min_time > total_time and inventory >= 0:
+    if min_time >= total_time and inventory >= 0:
        # 답이 여러 개 있다면 그중에서 땅의 높이가 가장 높은 것을 출력하시오.
        if k > ans:
            ans = k
            min_time = total_time
-
 
 print(min_time, ans)

@@ -13,24 +13,28 @@ for _ in range(M):
     x, y, z = map(int, input().split())
     # 나이, 계절순환, r, c, 생사여부
     lst.append((z, 0, x-1, y-1, True))
-lst.sort()
 
+lst.sort()
 q = deque()
 
 for a, t, r, c, alive in lst:
     q.append((a, t, r, c, alive))
 
 ans = 0
+stop = False
 while q:
 
     age, time, r, c, alive = q.popleft()
-    print(f'나이: {age}, 시간: {time}, 좌표: {r}, {c}, 생존: {alive}, 나무 위치 양분: {grid[r][c]}')
+    # print(f'나이: {age}, 시간: {time}, 좌표: {r}, {c}, 생존: {alive}, 나무 위치 양분: {grid[r][c]}')
 
     if time == K * 4 and alive:
         ans += 1
 
     # 봄
     elif time % 4 == 0:
+        # 계절이 봄으로 바뀌면 stop 다시 False로
+        if stop:
+            stop = False
         if grid[r][c] >= age:
             grid[r][c] -= age
             age += 1
@@ -56,18 +60,17 @@ while q:
         else:
             q.append((age, time + 1, r, c, alive))
 
-    # 지금 양분 추가를 반복해서 하는게 문제
-    else:
-        for i in range(N):
-            for j in range(N):
-                grid[i][j] += A[i][j]
+    # 겨울 (로봇 작동은 한 번만)
+    if time % 4 == 3:
+        if not stop:
+            for i in range(N):
+                for j in range(N):
+                    grid[i][j] += A[i][j]
+                    stop = True
         q.append((age, time + 1, r, c, alive))
 
-    for chunk in grid:
-        print(*chunk)
-    print('-----------------')
+    # for chunk in grid:
+    #     print(*chunk)
+    # print('-----------------')
 
 print(ans)
-
-def spring():
-

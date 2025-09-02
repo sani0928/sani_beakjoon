@@ -14,11 +14,6 @@ while start <= end:
     for wood in woods:
         if wood > cuting_h:
             have += wood - cuting_h
-<<<<<<< HEAD
-=======
-        if have >= M:
-            break
->>>>>>> 378261636dea018eb225db12a6a8537e258e2920
 
     if have >= M:
         start = cuting_h + 1

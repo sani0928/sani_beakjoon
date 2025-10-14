@@ -1,4 +1,9 @@
 import sys; sys.stdin = open("니가_싫어_싫어_1.txt")
+import time
+
+start = time.time()
+time.sleep(1)
+
 
 N = int(input())
 lst = []
@@ -9,7 +14,6 @@ for _ in range(N):
     max_length = max(max_length, outtime)
     lst.append((intime, outtime))
 
-lst.sort()
 # 가장 긴 퇴장시간 = 리스트 길이
 rec = [0] * max_length
 
@@ -35,3 +39,4 @@ while True:
 print(rec)
 print(ans1)
 print(*ans2)
+print(f'{time.time()-start:.4f}초')

@@ -1,31 +1,11 @@
 import sys; sys.stdin = open("RGB거리.txt")
 
+# 빨초파
 N = int(input())
+r, g, b = map(int, input().split())
 
-grid = [list(map(int, input().split())) for _ in range(N)]
+for i in range(1, N):
+    nr, ng, nb = map(int, input().split())
+    r, g, b = min(g, b) + nr, min(r, b) + ng, min(r, g) + nb
 
-def go(subset, R, G, B, turn):
-
-    if turn == N - 1:
-        return subset
-
-    if R:
-        R = False
-        go(subset + [grid[turn][1]], R, G, B, turn + 1)
-        go(subset + [grid[turn][2]], R, G, B, turn + 1)
-        R = True
-
-    if G:
-        G = False
-        go(subset + [grid[turn][0]], R, G, B, turn + 1)
-        go(subset + [grid[turn][2]], R, G, B, turn + 1)
-        G = True
-
-    if B:
-        B = False
-        go(subset + [grid[turn][0]], R, G, B, turn + 1)
-        go(subset + [grid[turn][1]], R, G, B, turn + 1)
-        B = True
-
-
-ans.append(go([], True, True, True, 0))
+print(min(r, g, b))

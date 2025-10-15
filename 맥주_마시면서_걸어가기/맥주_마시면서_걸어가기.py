@@ -1,15 +1,39 @@
 import sys; sys.stdin = open("맥주_마시면서_걸어가기.txt")
 from collections import deque
-T = int(input())
-for _ in range(T):
-    N = int(input())
-    cx, cy = map(int, input().split())
 
-    stores = []
+def calculator(a, b):
+    return True if abs(a) + abs(b) <= 1000 else False
+
+T = int(input())
+for t in range(1,T+1):
+    N = int(input())
+    sx, sy = map(int, input().split())
+    q = deque()
+    nt = deque()
+
     for _ in range(N):
         x, y = map(int, input().split())
-        dist = (abs(cx-x) + abs(cy-y)) // 1000
-        stores.append((x, y))
+        if calculator(sx - x, sy - y):
+            q.append((x, y))
+        else:
+            nt.append((x, y))
+    ex, ey = map(int, input().split())
 
-    rock_x, rock_y = map(int, input().split())
-    print(stores)
+    if calculator(sx - ex, sy - ey):
+        print('happy')
+        continue
+
+    arrived = False
+    while q:
+        cx, cy = q.popleft()
+        if calculator(cx - ex, cy - ey):
+            arrived = True
+            break
+        for _ in range(len(nt)):
+            nx, ny = nt.popleft()
+            if calculator(cx - nx, cy - ny):
+                q.append((nx, ny))
+            else:
+                nt.append((nx, ny))
+
+    print('happy' if arrived else 'sad')

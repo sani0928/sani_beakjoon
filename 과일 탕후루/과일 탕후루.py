@@ -1,28 +1,26 @@
 import sys; sys.stdin = open("과일 탕후루.txt")
-input = sys.stdin.readline
 N = int(input())
-tanghuru = list(map(int, input().split()))
+arr = list(map(int, input().split()))
+left = 0
+ans = 0
+check = [0] * 10
+distinct = 0
 
-max_len = 0
-start = 0
-end = 1
-
-while end != N:
-    # print(tanghuru[start:end + 1])
-    # set으로 종류 갯수 계산
-    cnt = len(set(tanghuru[start:end + 1]))
-    if cnt <= 2:
-        # print('종류 2개 이하, end 오른쪽으로 1칸 이동')
-        # print(f'end와 start = {end}, {start}')
-        max_len = max(max_len, end - start + 1)
-        end += 1
-    else:
-        # print('종류 2개 초과, start 오른쪽으로 1칸 이동')
-        start += 1
-    # print('-------------')
-
-print(max_len)
+for right in range(N):
 
 
-# 1 1 2 3 1 2 1 1
+    if check[arr[right]] == 0:
+        distinct += 1
+    check[arr[right]] += 1
 
+    print(check)
+
+    while distinct > 2:
+
+        check[arr[left]] -= 1
+        if check[arr[left]] == 0:
+            distinct -= 1
+        left += 1
+    ans = max(ans, right - left + 1)
+
+print(ans)

@@ -1,76 +1,70 @@
 import sys; sys.stdin = open("나무 재테크.txt")
-from collections import deque
-
+import heapq
+dr,dc = (0,1,1,1,0,-1,-1,-1), (1,1,0,-1,-1,-1,0,1)
+tree, dead = [], []
 N, M, K = map(int, input().split())
-A = [list(map(int, input().split())) for _ in range(N)]
-# 양분 정보
-grid = [[5] * N for _ in range(N)]
-
-lst = []
-dr, dc = (-1,-1,0,1,1,1,0,-1), (0,1,1,1,0,-1,-1,-1)
-
+grid = [list(map(int, input().split())) for _ in range(N)]
+food = [[5] * N for _ in range(N)]
 for _ in range(M):
     x, y, z = map(int, input().split())
-    # 나이, 계절순환, r, c, 생사여부
-    lst.append((z, 0, x-1, y-1, True))
+    x, y = x-1, y-1
+    heapq.heappush(tree, (z,x,y))
 
-lst.sort()
-q = deque()
+def spring():
+    temp = []
+    for _ in range(len(tree)):
+        age, r, c = heapq.heappop(tree)
 
-for a, t, r, c, alive in lst:
-    q.append((a, t, r, c, alive))
-
-ans = 0
-stop = False
-while q:
-
-    age, time, r, c, alive = q.popleft()
-    # print(f'나이: {age}, 시간: {time}, 좌표: {r}, {c}, 생존: {alive}, 나무 위치 양분: {grid[r][c]}')
-
-    if time == K * 4 and alive:
-        ans += 1
-
-    # 봄
-    elif time % 4 == 0:
-        # 계절이 봄으로 바뀌면 stop 다시 False로
-        if stop:
-            stop = False
-        if grid[r][c] >= age:
-            grid[r][c] -= age
+        if food[r][c] - age >= 0:
+            food[r][c] -= age
             age += 1
+            temp.append((age, r, c))
         else:
-            alive = False
-        q.append((age, time +  1, r, c, alive))
+            dead.append((age, r, c))
 
-    # 여름
-    elif time % 4 == 1:
-        if not alive:
-            grid[r][c] += age // 2
-        else:
-            q.append((age, time + 1, r, c, alive))
+    while temp:
+        heapq.heappush(tree, (temp.pop()))
+    return
 
-    # 가을
-    elif time % 4 == 2:
+def summer():
+    while dead:
+        age, r, c = dead.pop()
+        food[r][c] += age // 2
+    return
+
+def fall():
+    temp = []
+    for _ in range(len(tree)):
+        age, r, c = heapq.heappop(tree)
         if age % 5 == 0:
             for k in range(8):
                 nr, nc = r + dr[k], c + dc[k]
                 if 0 <= nr < N and 0 <= nc < N:
-                    q.append((1, time + 1, nr, nc, True))
-            q.append((age, time + 1, r, c, alive))
+                    temp.append((1, nr, nc))
+            temp.append((age, r, c))
         else:
-            q.append((age, time + 1, r, c, alive))
+            temp.append((age, r, c))
 
-    # 겨울 (로봇 작동은 한 번만)
-    if time % 4 == 3:
-        if not stop:
-            for i in range(N):
-                for j in range(N):
-                    grid[i][j] += A[i][j]
-                    stop = True
-        q.append((age, time + 1, r, c, alive))
+    while temp:
+        heapq.heappush(tree, (temp.pop()))
+    return
 
-    # for chunk in grid:
-    #     print(*chunk)
-    # print('-----------------')
+def winter():
+    for r in range(N):
+        for c in range(N):
+            food[r][c] += grid[r][c]
+    return
 
-print(ans)
+def after_year():
+    spring()
+    summer()
+    fall()
+    winter()
+    return
+
+year = 0
+while year != K:
+    after_year()
+    year += 1
+
+print(len(tree))

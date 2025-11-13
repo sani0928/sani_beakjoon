@@ -1,0 +1,6 @@
+3 3
+abc
+def
+ghi
+2 2
+LU

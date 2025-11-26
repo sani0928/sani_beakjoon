@@ -5,17 +5,14 @@ dr, dc = (0,1,0,-1,0), (1,0,-1,0,0)
 def ward(r, c, region):
 
     q = deque([(r, c)])
-    vis = [[False] * C for _ in range(R)]
     ans[r][c] = '.'
-    vis[r][c] = True
 
     while q:
         r1, c1 = q.popleft()
         for kk in range(4):
             r2, c2 = r1 + dr[kk], c1 + dc[kk]
             if 0 <= r2 < R and 0 <= c2 < C:
-                if grid[r2][c2] == region and not vis[r2][c2]:
-                    vis[r2][c2] = True
+                if grid[r2][c2] == region and ans[r2][c2] != '.':
                     ans[r2][c2] = '.'
                     q.append((r2, c2))
     return
@@ -25,15 +22,15 @@ grid = [list(map(str, input().strip())) for _ in range(R)]
 cr, cc = map(int, input().split())
 cr -= 1; cc -= 1
 ans = [['#'] * C for _ in range(R)]
-cmd = list(map(str, input().strip()))
-for c in cmd:
-    if c == 'U':
+command = list(map(str, input().rstrip()))
+for cmd in command:
+    if cmd == 'U':
         cr -= 1
-    elif c == 'D':
+    elif cmd == 'D':
         cr += 1
-    elif c == 'L':
+    elif cmd == 'L':
         cc -= 1
-    elif c == 'R':
+    elif cmd == 'R':
         cc += 1
     else:
         ward(cr, cc, grid[cr][cc])
@@ -44,4 +41,4 @@ for k in range(5):
         ans[nr][nc] = '.'
 
 for chunk in ans:
-    print(*chunk)
+    print(''.join(chunk))

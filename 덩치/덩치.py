@@ -1,18 +1,19 @@
 import sys; sys.stdin = open("덩치.txt")
 
 N = int(input())
-lst = []
-for _ in range(N):
-    lst.append(list(map(int, input().split())))
-lst.sort(reverse=True)
-ans.append(lst)
+people = []
+ans = [0] * N
+for idx in range(N):
+    weight, length = map(int, input().split())
+    people.append((idx, weight, length))
 
-for i in range(N):
-    w, h = lst[i]
-    ans.append(w, h)
-    for j in range(i+1, N):
-        ans.append(lst[j])
-        if lst[j][0] > w and lst[j][1] > h:
-            lst[i], lst[j] = lst[j], lst[i]
-
-ans.append(lst)
+for i, x, y in people:
+    rank = 0
+    for j in range(N):
+        if i == j:
+            continue
+        _, p, q = people[j]
+        if p > x and q > y:
+            rank += 1
+    ans[i] = rank + 1
+print(*ans)

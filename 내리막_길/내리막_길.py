@@ -1,28 +1,24 @@
 import sys; sys.stdin = open("내리막_길.txt")
-
 dr, dc = (0,1,0,-1), (1,0,-1,0)
-ans = 0
+
 M, N = map(int, input().split())
-grid = [list(map(int, input().split())) for _ in range(M)]
-vis = [[False] * N for _ in range(M)]
+board = [list(map(int, input().split())) for _ in range(M)]
+dp = [[-1] * N for _ in range(M)]
 
-for r in range(M):
-    for c in range(N):
-        if grid[0][0] < grid[r][c] or grid[M-1][N-1] > grid[r][c]:
-            vis[r][c] = True
+def dfs(cr, cc):
 
-s = [(0, 0)]
-vis[0][0] = True
-while s:
-    r, c = s.pop()
+    if cr == M - 1 and cc == N - 1:
+        return 1
+    if dp[cr][cc] != -1:
+        return dp[cr][cc]
 
-    if r == M - 1 and c == N - 1:
-        ans += 1
-
+    dp[cr][cc] = 0
     for k in range(4):
-        nr, nc = r + dr[k], c + dc[k]
-        if 0 <= nr < M and 0 <= nc < N and not vis[nr][nc]:
-            if grid[nr][nc] < grid[r][c]:
-                s.append((nr, nc))
+        nr, nc = cr + dr[k], cc + dc[k]
+        if 0 <= nr < M and 0 <= nc < N and board[nr][nc] < board[cr][cc]:
+            dp[cr][cc] += dfs(nr, nc)
 
+    return dp[cr][cc]
+
+ans = dfs(0, 0)
 print(ans)
